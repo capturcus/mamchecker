@@ -46,8 +46,8 @@ export class HomeComponent implements OnInit {
     this.badWords = [];
     let words = this.textareaString.split(/\s+/);
     for (let word of words) {
-      let cleanWord = word.toLowerCase().replace(/[^0-9a-zA-Zżółćęąźńś]/gi, '');
-      if (this.wordsDict[cleanWord] === undefined) {
+      let cleanWord = word.toLowerCase().replace(/[^a-zA-Zżółćęąźńś]/gi, '');
+      if (this.wordsDict[cleanWord] === undefined && cleanWord !== "") {
         this.badWords.push(cleanWord);
       }
     }
