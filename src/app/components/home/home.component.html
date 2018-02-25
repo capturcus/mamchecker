@@ -2,7 +2,15 @@
   <h1 class="title">
     MamoSprawdzacz
   </h1>
+  <div *ngIf="!ready" style="color: red;">Program ładuje słowa...</div>
+  <div *ngIf="ready" style="color: green;">Program gotowy!</div>
   Wklej tekst tutaj:
   <textarea [(ngModel)]="textareaString"></textarea>
   <button (click)="checkText()">SPRAWDŹ</button>
+  <div *ngIf="badWords.length !== 0">
+    <h3>ZŁE SŁOWA:</h3>
+    <ul *ngFor="let word of badWords">
+      <li>{{word}}</li>
+    </ul>
+  </div>
 </div>
