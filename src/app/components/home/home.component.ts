@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
 
   private ready: boolean;
 
+  private error: string = "";
+
   constructor() {
     this.fs = require('fs');
   }
@@ -26,15 +28,27 @@ export class HomeComponent implements OnInit {
     this.fs.readFile('words.txt', 'utf8', function (err, data) {
       if (err){
         console.log("errored ", err);
+        that.error = String(err);
         return console.log(err);
       }
       console.log("loading words")
       for (var word of data.split("\n")) {
         that.wordsDict[word] = true;
       }
-      delete that.wordsDict[""];
-      console.log(Object.keys(that.wordsDict).length);
-      that.ready = true;
+      that.fs.readFile('mojeslowa.txt', 'utf8', function (err, data) {
+        if (err){
+          console.log("errored ", err);
+          that.error = String(err);
+          return console.log(err);
+        }
+        console.log("loading mojeslowa")
+        for (var word of data.split("\n")) {
+          that.wordsDict[word] = true;
+        }
+        delete that.wordsDict[""];
+        console.log(Object.keys(that.wordsDict).length);
+        that.ready = true;
+      });
     });
   }
 
