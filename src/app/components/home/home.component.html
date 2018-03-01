@@ -6,7 +6,10 @@
   <div *ngIf="ready" style="color: green;">Program gotowy!</div>
   Wklej tekst tutaj:
   <textarea [(ngModel)]="textareaString"></textarea>
-  <button (click)="checkText()">SPRAWDŹ</button>
+  <div>
+    <button (click)="checkText()">SPRAWDŹ</button>
+    <button (click)="loadWords()">Przeładuj słowa</button>
+  </div>
   <div *ngIf="badWords.length !== 0">
     <h3>ZŁE SŁOWA:</h3>
     <ul *ngFor="let word of badWords">

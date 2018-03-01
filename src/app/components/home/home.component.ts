@@ -22,9 +22,11 @@ export class HomeComponent implements OnInit {
     this.fs = require('fs');
   }
 
-  test() {
+  loadWords() {
     console.log("preparing words");
     let that = this;
+    this.ready = false;
+    this.wordsDict = {};
     this.fs.readFile('words.txt', 'utf8', function (err, data) {
       if (err){
         console.log("errored ", err);
@@ -53,7 +55,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.test();
+    this.loadWords();
   }
 
   checkText() {
